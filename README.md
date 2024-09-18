@@ -13,7 +13,7 @@ require("regtee").setup({
 ### Usage
 
 ```vim
-" Copy everything yanked to unnamed register (`"`) to the register `a`.
+" Copy everything yanked to the unnamed register (`"`) to the register `a`.
 " The register `a` is also cleared first (set to an empty string).
 :Regtee a
 
