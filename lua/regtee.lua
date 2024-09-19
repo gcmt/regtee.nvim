@@ -9,7 +9,7 @@ M.config_defaults = {
 -- Start/stop
 local function set_register(opts)
 	local register = opts.fargs[1] or ""
-	if #register > 1 or #register == 1 and string.match(register, "%a") == nil then
+	if #register > 1 or #register == 1 and not string.match(register, "%a") then
 		vim.notify("Regtee: register must be one of [a-zA-Z]", vim.log.levels.ERROR)
 		return
 	end
