@@ -9,21 +9,21 @@ M.config_defaults = {
 -- Start/stop
 local function set_register(opts)
 	local register = opts.fargs[1] or ""
-		print("Error: register must be one of [a-zA-Z]")
 	if #register > 1 or #register == 1 and string.match(register, "%a") == nil then
+		vim.notify("Regtee: register must be one of [a-zA-Z]", vim.log.levels.ERROR)
 		return
 	end
 	if register == "" then
 		if M.register ~= "" then
-			print("Stop tee @" .. M.register)
+			vim.notify("Stop tee @" .. M.register, vim.log.levels.INFO)
 			M.register = ""
 			return
 		end
 	elseif string.match(register, "%u") then
-		print("Append tee @" .. register)
+		vim.notify("Append tee @" .. register, vim.log.levels.INFO)
 		M.register = string.lower(register)
 	else
-		print("Start tee @" .. register)
+		vim.notify("Start tee @" .. register, vim.log.levels.INFO)
 		M.register = register
 		vim.fn.setreg(register, "")
 	end
@@ -51,7 +51,7 @@ end
 -- Setup autocommands
 local function setup_autocommands()
 	if not vim.fn.exists("##TextYankPost") then
-		print("Error: autocommand TextYankPost not available")
+		vim.notify("Regtee: autocommand TextYankPost not available", vim.log.levels.ERROR)
 		return false
 	end
 	local group = vim.api.nvim_create_augroup(M.plugin_name, { clear = true })
