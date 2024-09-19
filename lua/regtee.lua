@@ -9,8 +9,8 @@ M.config_defaults = {
 -- Start/stop
 local function set_register(opts)
 	local register = opts.fargs[1] or ""
-	if #register > 1 or string.match(register, "%a") == nil then
 		print("Error: register must be one of [a-zA-Z]")
+	if #register > 1 or #register == 1 and string.match(register, "%a") == nil then
 		return
 	end
 	if register == "" then
